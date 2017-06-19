@@ -22556,10 +22556,10 @@ var Game = function () {
     value: function start() {
       var _this = this;
 
-      var x = 5;
-      var y = 5;
-
       setInterval(function () {
+
+        var x = Math.round(Math.random() * 500) + 1;
+        var y = Math.round(Math.random() * 500) + 1;
 
         var circle = _this.canvasWrapper.createShape();
 
@@ -22572,9 +22572,6 @@ var Game = function () {
           _this.canvasWrapper.removeAllChildren();
           _this.canvasWrapper.update();
         });
-
-        x += Math.round(Math.random() * 250) + 1;
-        y += Math.round(Math.random() * 250) + 1;
       }, 2000);
     }
   }]);

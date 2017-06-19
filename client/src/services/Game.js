@@ -6,10 +6,10 @@ class Game {
 
   start() {
 
-    let x = 5;
-    let y = 5;
-
     setInterval(() => {
+
+      let x = Math.round(Math.random() * 500) + 1;
+      let y = Math.round(Math.random() * 500) + 1;
 
       const circle = this.canvasWrapper.createShape();
 
@@ -22,9 +22,6 @@ class Game {
         this.canvasWrapper.removeAllChildren();
         this.canvasWrapper.update();
       });
-
-      x += Math.round(Math.random() * 250) + 1;
-      y += Math.round(Math.random() * 250) + 1;
 
     }, 2000)
 
