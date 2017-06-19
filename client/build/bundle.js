@@ -22518,9 +22518,9 @@ var CanvasWrapper = function () {
       this.stage.update();
     }
   }, {
-    key: "removeAllChildren",
-    value: function removeAllChildren() {
-      this.stage.removeAllChildren();
+    key: "removeChild",
+    value: function removeChild(child) {
+      this.stage.removeChild(child);
     }
   }]);
 
@@ -22569,7 +22569,7 @@ var Game = function () {
         _this.canvasWrapper.update();
 
         circle.addEventListener("click", function (event) {
-          _this.canvasWrapper.removeAllChildren();
+          _this.canvasWrapper.removeChild(circle);
           _this.canvasWrapper.update();
         });
       }, 2000);

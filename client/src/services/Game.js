@@ -19,7 +19,7 @@ class Game {
       this.canvasWrapper.update();
 
       circle.addEventListener("click", (event) => {
-        this.canvasWrapper.removeAllChildren();
+        this.canvasWrapper.removeChild(circle);
         this.canvasWrapper.update();
       });
 

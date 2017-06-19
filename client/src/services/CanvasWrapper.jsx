@@ -16,8 +16,8 @@ class CanvasWrapper{
     this.stage.update();
   }
 
-  removeAllChildren() {
-    this.stage.removeAllChildren();
+  removeChild(child) {
+    this.stage.removeChild(child);
   }
 
 }
