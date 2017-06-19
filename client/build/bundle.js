@@ -22448,6 +22448,7 @@ var GameContainer = function (_React$Component) {
   _createClass(GameContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      // When not using EaselJS:
       // const context = this.refs.gameCanvas.getContext('2d');
       // this.setState({context: context}, () => {
       //     setInterval(this.update, 2000);
@@ -22465,14 +22466,10 @@ var GameContainer = function (_React$Component) {
       stage.update();
 
       circle.addEventListener("click", function (event) {
-        console.log("clicked");
+        stage.removeAllChildren();
+        stage.update();
       });
     }
-
-    // update() {
-    //   console.log("draw circle");
-    // }
-
   }, {
     key: "render",
     value: function render() {

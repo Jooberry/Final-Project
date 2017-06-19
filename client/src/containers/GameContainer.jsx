@@ -11,6 +11,7 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount() {
+    // When not using EaselJS:
     // const context = this.refs.gameCanvas.getContext('2d');
     // this.setState({context: context}, () => {
     //     setInterval(this.update, 2000);
@@ -28,13 +29,10 @@ class GameContainer extends React.Component {
     stage.update();
 
     circle.addEventListener("click", (event) => {
-      console.log("clicked")
+      stage.removeAllChildren();
+      stage.update();
     });
   }
-
-  // update() {
-  //   console.log("draw circle");
-  // }
 
   render() {
     return (
