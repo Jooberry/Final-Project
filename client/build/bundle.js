@@ -22446,27 +22446,40 @@ var GameContainer = function (_React$Component) {
   }
 
   _createClass(GameContainer, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      // const context = this.refs.gameCanvas.getContext('2d');
+      // this.setState({context: context}, () => {
+      //     setInterval(this.update, 2000);
+      // });
+      //Create a stage by getting a reference to the canvas
+      var stage = new createjs.Stage("canvas");
+      //Create a Shape DisplayObject.
+      var circle = new createjs.Shape();
+      circle.graphics.beginFill("blue").drawCircle(0, 0, 30);
+      //Set position of Shape instance.
+      circle.x = circle.y = 50;
+      //Add Shape instance to stage display list.
+      stage.addChild(circle);
+      //Update stage will render next frame
+      stage.update();
 
-      var context = this.refs.canvasid.getContext('2d');
-      this.setState({ context: context }, function () {
-        setInterval(_this2.update, 2000);
+      circle.addEventListener("click", function (event) {
+        console.log("clicked");
       });
     }
+
+    // update() {
+    //   console.log("draw circle");
+    // }
+
   }, {
-    key: 'update',
-    value: function update() {
-      console.log("draw circle");
-    }
-  }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
-        _react2.default.createElement('canvas', { id: 'canvas', ref: 'canvasid', width: '640', height: '580' })
+        _react2.default.createElement("canvas", { id: "canvas", ref: "gameCanvas", width: "640", height: "580" })
       );
     }
   }]);
