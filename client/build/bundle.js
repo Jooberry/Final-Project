@@ -22561,25 +22561,46 @@ var Game = function () {
     value: function start() {
       var _this = this;
 
-      setInterval(function () {
+      createjs.Ticker.setFPS(24);
 
-        var x = Math.round(Math.random() * 500) + 1;
-        var y = Math.round(Math.random() * 500) + 1;
+      var x = Math.round(Math.random() * 500) + 1;
+      var y = Math.round(Math.random() * 500) + 1;
 
-        var circle = _this.canvasWrapper.createShape();
+      var circle = this.canvasWrapper.createShape();
 
-        circle.graphics.beginFill("blue").drawCircle(x, y, 30);
-        circle.x = circle.y = 50;
-        _this.canvasWrapper.addChild(circle);
-        createjs.Tween.get(circle, { loop: true }).to({ alpha: 0 }, 0, createjs.Ease.getPowInOut(2)).to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2)).to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2));
-        createjs.Ticker.setFPS(100);
-        createjs.Ticker.addEventListener("tick", _this.canvasWrapper.getCanvas());
+      circle.graphics.beginFill("blue").drawCircle(x, y, 30);
+      circle.x = circle.y = 50;
+      circle.alpha = 0;
+      this.canvasWrapper.addChild(circle);
+      var tween = createjs.Tween.get(circle, { loop: false }).to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2)).to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2)).call(this.handleComplete.bind(this));
 
-        circle.addEventListener("click", function (event) {
-          _this.canvasWrapper.removeChild(circle);
-          _this.canvasWrapper.update();
-        });
-      }, 3000);
+      createjs.Ticker.addEventListener("tick", this.canvasWrapper.getCanvas());
+
+      circle.addEventListener("click", function (event) {
+        _this.canvasWrapper.removeChild(circle);
+        _this.canvasWrapper.update();
+      });
+    }
+  }, {
+    key: "handleComplete",
+    value: function handleComplete() {
+      var _this2 = this;
+
+      var x = Math.round(Math.random() * 500) + 1;
+      var y = Math.round(Math.random() * 500) + 1;
+
+      var circle = this.canvasWrapper.createShape();
+
+      circle.graphics.beginFill("blue").drawCircle(x, y, 30);
+      circle.x = circle.y = 50;
+      circle.alpha = 0;
+      this.canvasWrapper.addChild(circle);
+      var tween = createjs.Tween.get(circle, { loop: false }).to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2)).to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2)).call(this.handleComplete.bind(this));
+
+      circle.addEventListener("click", function (event) {
+        _this2.canvasWrapper.removeChild(circle);
+        _this2.canvasWrapper.update();
+      });
     }
   }]);
 
