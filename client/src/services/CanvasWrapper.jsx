@@ -20,6 +20,10 @@ class CanvasWrapper{
     this.stage.removeChild(child);
   }
 
+  getCanvas(){
+    return this.stage;
+  }
+
 }
 
 export default CanvasWrapper;

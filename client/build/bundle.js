@@ -22522,6 +22522,11 @@ var CanvasWrapper = function () {
     value: function removeChild(child) {
       this.stage.removeChild(child);
     }
+  }, {
+    key: "getCanvas",
+    value: function getCanvas() {
+      return this.stage;
+    }
   }]);
 
   return CanvasWrapper;
@@ -22566,13 +22571,15 @@ var Game = function () {
         circle.graphics.beginFill("blue").drawCircle(x, y, 30);
         circle.x = circle.y = 50;
         _this.canvasWrapper.addChild(circle);
-        _this.canvasWrapper.update();
+        createjs.Tween.get(circle, { loop: true }).to({ alpha: 0 }, 0, createjs.Ease.getPowInOut(2)).to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2)).to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2));
+        createjs.Ticker.setFPS(100);
+        createjs.Ticker.addEventListener("tick", _this.canvasWrapper.getCanvas());
 
         circle.addEventListener("click", function (event) {
           _this.canvasWrapper.removeChild(circle);
           _this.canvasWrapper.update();
         });
-      }, 2000);
+      }, 3000);
     }
   }]);
 
