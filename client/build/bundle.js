@@ -22423,6 +22423,14 @@ var _react = __webpack_require__(82);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _CanvasWrapper = __webpack_require__(185);
+
+var _CanvasWrapper2 = _interopRequireDefault(_CanvasWrapper);
+
+var _Game = __webpack_require__(186);
+
+var _Game2 = _interopRequireDefault(_Game);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22434,49 +22442,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var GameContainer = function (_React$Component) {
   _inherits(GameContainer, _React$Component);
 
-  function GameContainer(props) {
+  function GameContainer() {
     _classCallCheck(this, GameContainer);
 
-    var _this = _possibleConstructorReturn(this, (GameContainer.__proto__ || Object.getPrototypeOf(GameContainer)).call(this, props));
-
-    _this.state = {
-      context: null
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (GameContainer.__proto__ || Object.getPrototypeOf(GameContainer)).apply(this, arguments));
   }
 
   _createClass(GameContainer, [{
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {
       // When not using EaselJS:
       // const context = this.refs.gameCanvas.getContext('2d');
       // this.setState({context: context}, () => {
       //     setInterval(this.update, 2000);
       // });
-      //Create a stage by getting a reference to the canvas
-      var stage = new createjs.Stage("canvas");
-      //Create a Shape DisplayObject.
-      var circle = new createjs.Shape();
-      circle.graphics.beginFill("blue").drawCircle(0, 0, 30);
-      //Set position of Shape instance.
-      circle.x = circle.y = 50;
-      //Add Shape instance to stage display list.
-      stage.addChild(circle);
-      //Update stage will render next frame
-      stage.update();
 
-      circle.addEventListener("click", function (event) {
-        stage.removeAllChildren();
-        stage.update();
-      });
+      var stage = new _CanvasWrapper2.default("canvas");
+      var game = new _Game2.default(stage);
+
+      game.start();
+
+      // Darren says don't write it like this: new Game(new CanvasWrapper("canvas")).start();
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
-        _react2.default.createElement("canvas", { id: "canvas", ref: "gameCanvas", width: "640", height: "580" })
+        _react2.default.createElement('canvas', { id: 'canvas', ref: 'gameCanvas', width: '640', height: '580' })
       );
     }
   }]);
@@ -22485,6 +22479,110 @@ var GameContainer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = GameContainer;
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CanvasWrapper = function () {
+  function CanvasWrapper(divId) {
+    _classCallCheck(this, CanvasWrapper);
+
+    this.stage = new createjs.Stage("canvas");
+  }
+
+  _createClass(CanvasWrapper, [{
+    key: "createShape",
+    value: function createShape() {
+      return new createjs.Shape();
+    }
+  }, {
+    key: "addChild",
+    value: function addChild(child) {
+      this.stage.addChild(child);
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      this.stage.update();
+    }
+  }, {
+    key: "removeAllChildren",
+    value: function removeAllChildren() {
+      this.stage.removeAllChildren();
+    }
+  }]);
+
+  return CanvasWrapper;
+}();
+
+exports.default = CanvasWrapper;
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Game = function () {
+  function Game(canvasWrapper) {
+    _classCallCheck(this, Game);
+
+    this.canvasWrapper = canvasWrapper;
+  }
+
+  _createClass(Game, [{
+    key: "start",
+    value: function start() {
+      var _this = this;
+
+      var x = 5;
+      var y = 5;
+
+      setInterval(function () {
+
+        var circle = _this.canvasWrapper.createShape();
+
+        circle.graphics.beginFill("blue").drawCircle(x, y, 30);
+        circle.x = circle.y = 50;
+        _this.canvasWrapper.addChild(circle);
+        _this.canvasWrapper.update();
+
+        circle.addEventListener("click", function (event) {
+          _this.canvasWrapper.removeAllChildren();
+          _this.canvasWrapper.update();
+        });
+
+        x += Math.round(Math.random() * 250) + 1;
+        y += Math.round(Math.random() * 250) + 1;
+      }, 2000);
+    }
+  }]);
+
+  return Game;
+}();
+
+exports.default = Game;
 
 /***/ })
 /******/ ]);

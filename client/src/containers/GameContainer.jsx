@@ -1,14 +1,8 @@
 import React from 'react';
+import CanvasWrapper from '../services/CanvasWrapper.jsx'
+import Game from '../services/Game.js'
 
 class GameContainer extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      context: null
-    };
-  }
 
   componentDidMount() {
     // When not using EaselJS:
@@ -16,22 +10,13 @@ class GameContainer extends React.Component {
     // this.setState({context: context}, () => {
     //     setInterval(this.update, 2000);
     // });
-    //Create a stage by getting a reference to the canvas
-    const stage = new createjs.Stage("canvas");
-    //Create a Shape DisplayObject.
-    const circle = new createjs.Shape();
-    circle.graphics.beginFill("blue").drawCircle(0, 0, 30);
-    //Set position of Shape instance.
-    circle.x = circle.y = 50;
-    //Add Shape instance to stage display list.
-    stage.addChild(circle);
-    //Update stage will render next frame
-    stage.update();
+    
+    const stage = new CanvasWrapper("canvas");
+    const game = new Game(stage);
+   
+    game.start();
 
-    circle.addEventListener("click", (event) => {
-      stage.removeAllChildren();
-      stage.update();
-    });
+// Darren says don't write it like this: new Game(new CanvasWrapper("canvas")).start();
   }
 
   render() {
