@@ -22559,9 +22559,9 @@ var Game = function () {
       createjs.Ticker.setFPS(24);
 
       var x = Math.round(Math.random() * 1150) - 50;
-      var y = Math.round(Math.random() * 480) - 50;
+      var y = Math.round(Math.random() * 460) - 50;
 
-      var images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png'];
+      var images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png', '/images/Allegra.png', '/images/Andrew.png', '/images/Ben.png', '/images/Bill.png', '/images/Caroline.png', '/images/David.png', '/images/Dominic.png', '/images/Duncan.png', '/images/Eden.png', '/images/Euan.png', '/images/Ian.png', '/images/James.png', '/images/Joo.png', '/images/Michael.png', '/images/Rajini.png', '/images/Reece.png', '/images/Rhys.png', '/images/Tristan.png'];
 
       var image = new Image();
       image.src = images[Math.floor(Math.random() * images.length)];
@@ -22581,23 +22581,6 @@ var Game = function () {
       bitmap.addEventListener("click", function (event) {
         _this.canvasWrapper.removeChild(bitmap);
         _this.canvasWrapper.update();
-
-        // const circle = this.canvasWrapper.createShape();
-
-        // circle.graphics.beginFill("blue").drawCircle(x, y, 30);
-        // circle.x = circle.y = 50;
-        // circle.alpha = 0;
-        // this.canvasWrapper.addChild(circle);
-        // const tween = createjs.Tween.get(circle, { loop: false })
-        //   .to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2))
-        //   .to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2))
-        //   .call(this.handleComplete.bind(this));
-
-        // createjs.Ticker.addEventListener("tick", this.canvasWrapper.getCanvas());
-
-        // circle.addEventListener("click", (event) => {
-        //   this.canvasWrapper.removeChild(circle);
-        //   this.canvasWrapper.update();
       });
     }
   }, {
@@ -22608,9 +22591,9 @@ var Game = function () {
       createjs.Ticker.setFPS(24);
 
       var x = Math.round(Math.random() * 1150) - 50;
-      var y = Math.round(Math.random() * 480) - 50;
+      var y = Math.round(Math.random() * 460) - 50;
 
-      var images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png'];
+      var images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png', '/images/Allegra.png', '/images/Andrew.png', '/images/Ben.png', '/images/Bill.png', '/images/Caroline.png', '/images/David.png', '/images/Dominic.png', '/images/Duncan.png', '/images/Eden.png', '/images/Euan.png', '/images/Ian.png', '/images/James.png', '/images/Joo.png', '/images/Michael.png', '/images/Rajini.png', '/images/Reece.png', '/images/Rhys.png', '/images/Tristan.png'];
 
       var image = new Image();
       image.src = images[Math.floor(Math.random() * images.length)];
