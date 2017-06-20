@@ -22610,8 +22610,10 @@ var Game = function () {
       var x = Math.round(Math.random() * 1150) - 50;
       var y = Math.round(Math.random() * 480) - 50;
 
+      var images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png'];
+
       var image = new Image();
-      image.src = '/images/Tony.png';
+      image.src = images[Math.floor(Math.random() * images.length)];
 
       var bitmap = new createjs.Bitmap(image);
       bitmap.alpha = 0;

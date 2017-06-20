@@ -62,8 +62,10 @@ class Game {
     let x = Math.round(Math.random() * 1150) - 50;
     let y = Math.round(Math.random() * 480) - 50;
 
+    const images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png']
+
     const image = new Image();
-    image.src = '/images/Tony.png'
+    image.src = images[Math.floor(Math.random()*images.length)];
 
     const bitmap = new createjs.Bitmap(image);
     bitmap.alpha = 0;
