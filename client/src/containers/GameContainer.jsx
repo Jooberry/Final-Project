@@ -5,12 +5,7 @@ import Game from '../services/Game.js'
 class GameContainer extends React.Component {
 
   componentDidMount() {
-    // When not using EaselJS:
-    // const context = this.refs.gameCanvas.getContext('2d');
-    // this.setState({context: context}, () => {
-    //     setInterval(this.update, 2000);
-    // });
-    
+
     const stage = new CanvasWrapper("canvas");
     const game = new Game(stage);
    
@@ -22,7 +17,7 @@ class GameContainer extends React.Component {
   render() {
     return (
       <div>
-        <canvas id="canvas" ref="gameCanvas" width="640" height="580" >
+        <canvas id="canvas" ref="gameCanvas" width="1263" height="590" >
         </canvas>
       </div>
     );

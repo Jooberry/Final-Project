@@ -5,53 +5,85 @@ class Game {
   }
 
   start() {
+
       createjs.Ticker.setFPS(24);
 
-      let x = Math.round(Math.random() * 500) + 1;
-      let y = Math.round(Math.random() * 500) + 1;
+      let x = Math.round(Math.random() * 1150) - 50;
+      let y = Math.round(Math.random() * 480) - 50;
 
-      const circle = this.canvasWrapper.createShape();
+      const images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png']
 
-      circle.graphics.beginFill("blue").drawCircle(x, y, 30);
-      circle.x = circle.y = 50;
-      circle.alpha = 0;
-      this.canvasWrapper.addChild(circle);
-      const tween = createjs.Tween.get(circle, { loop: false })
+      const image = new Image();
+      image.src = images[Math.floor(Math.random()*images.length)];
+
+      const bitmap = new createjs.Bitmap(image);
+      bitmap.alpha = 0;
+      bitmap.x = x;
+      bitmap.y = y;
+      bitmap.scaleX = 0.5;
+      bitmap.scaleY = 0.5;
+
+      this.canvasWrapper.addChild(bitmap);
+      const tween = createjs.Tween.get(bitmap, { loop: false })
         .to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2))
         .to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2))
-        .call(this.handleComplete.bind(this));
-
-
-
+       .call(this.handleComplete.bind(this));
 
       createjs.Ticker.addEventListener("tick", this.canvasWrapper.getCanvas());
 
-      circle.addEventListener("click", (event) => {
-        this.canvasWrapper.removeChild(circle);
+      bitmap.addEventListener("click", (event) => {
+        this.canvasWrapper.removeChild(bitmap);
         this.canvasWrapper.update();
+
+      // const circle = this.canvasWrapper.createShape();
+
+      // circle.graphics.beginFill("blue").drawCircle(x, y, 30);
+      // circle.x = circle.y = 50;
+      // circle.alpha = 0;
+      // this.canvasWrapper.addChild(circle);
+      // const tween = createjs.Tween.get(circle, { loop: false })
+      //   .to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2))
+      //   .to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2))
+      //   .call(this.handleComplete.bind(this));
+
+      // createjs.Ticker.addEventListener("tick", this.canvasWrapper.getCanvas());
+
+      // circle.addEventListener("click", (event) => {
+      //   this.canvasWrapper.removeChild(circle);
+      //   this.canvasWrapper.update();
       });
 
   }
 
   handleComplete() {
-    let x = Math.round(Math.random() * 500) + 1;
-    let y = Math.round(Math.random() * 500) + 1;
 
-    const circle = this.canvasWrapper.createShape();
+    createjs.Ticker.setFPS(24);
 
-    circle.graphics.beginFill("blue").drawCircle(x, y, 30);
-    circle.x = circle.y = 50;
-    circle.alpha = 0;
-    this.canvasWrapper.addChild(circle);
-    const tween = createjs.Tween.get(circle, { loop: false })
+    let x = Math.round(Math.random() * 1150) - 50;
+    let y = Math.round(Math.random() * 480) - 50;
+
+    const image = new Image();
+    image.src = '/images/Tony.png'
+
+    const bitmap = new createjs.Bitmap(image);
+    bitmap.alpha = 0;
+    bitmap.x = x;
+    bitmap.y = y;
+    bitmap.scaleX = 0.5;
+    bitmap.scaleY = 0.5;
+
+    this.canvasWrapper.addChild(bitmap);
+    const tween = createjs.Tween.get(bitmap, { loop: false })
       .to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2))
       .to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2))
       .call(this.handleComplete.bind(this));
 
-      circle.addEventListener("click", (event) => {
-        this.canvasWrapper.removeChild(circle);
-        this.canvasWrapper.update();
-      });
+    createjs.Ticker.addEventListener("tick", this.canvasWrapper.getCanvas());
+
+    bitmap.addEventListener("click", (event) => {
+      this.canvasWrapper.removeChild(bitmap);
+      this.canvasWrapper.update();
+    });
   }
 
 
