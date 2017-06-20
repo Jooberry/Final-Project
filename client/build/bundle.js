@@ -22552,14 +22552,14 @@ var Game = function () {
   }
 
   _createClass(Game, [{
-    key: 'start',
-    value: function start() {
+    key: 'createImage',
+    value: function createImage() {
       var _this = this;
 
       createjs.Ticker.setFPS(24);
 
-      var x = Math.round(Math.random() * 1150) - 50;
-      var y = Math.round(Math.random() * 460) - 50;
+      var x = Math.round(Math.random() * 1150) - 25;
+      var y = Math.round(Math.random() * 420) - 25;
 
       var images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png', '/images/Allegra.png', '/images/Andrew.png', '/images/Ben.png', '/images/Bill.png', '/images/Caroline.png', '/images/David.png', '/images/Dominic.png', '/images/Duncan.png', '/images/Eden.png', '/images/Euan.png', '/images/Ian.png', '/images/James.png', '/images/Joo.png', '/images/Michael.png', '/images/Rajini.png', '/images/Reece.png', '/images/Rhys.png', '/images/Tristan.png'];
 
@@ -22570,8 +22570,8 @@ var Game = function () {
       bitmap.alpha = 0;
       bitmap.x = x;
       bitmap.y = y;
-      bitmap.scaleX = 0.5;
-      bitmap.scaleY = 0.5;
+      bitmap.scaleX = 0.35;
+      bitmap.scaleY = 0.35;
 
       this.canvasWrapper.addChild(bitmap);
       var tween = createjs.Tween.get(bitmap, { loop: false }).to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2)).to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2)).call(this.handleComplete.bind(this));
@@ -22584,36 +22584,16 @@ var Game = function () {
       });
     }
   }, {
+    key: 'start',
+    value: function start() {
+
+      this.createImage();
+    }
+  }, {
     key: 'handleComplete',
     value: function handleComplete() {
-      var _this2 = this;
 
-      createjs.Ticker.setFPS(24);
-
-      var x = Math.round(Math.random() * 1150) - 50;
-      var y = Math.round(Math.random() * 460) - 50;
-
-      var images = ['/images/Tony.png', '/images/Alex.png', '/images/Craig.png', '/images/Darren.png', '/images/Harrison.png', '/images/John.png', '/images/Sandy.png', '/images/Sian.png', '/images/Wojtek.png', '/images/Zsolt.png', '/images/Allegra.png', '/images/Andrew.png', '/images/Ben.png', '/images/Bill.png', '/images/Caroline.png', '/images/David.png', '/images/Dominic.png', '/images/Duncan.png', '/images/Eden.png', '/images/Euan.png', '/images/Ian.png', '/images/James.png', '/images/Joo.png', '/images/Michael.png', '/images/Rajini.png', '/images/Reece.png', '/images/Rhys.png', '/images/Tristan.png'];
-
-      var image = new Image();
-      image.src = images[Math.floor(Math.random() * images.length)];
-
-      var bitmap = new createjs.Bitmap(image);
-      bitmap.alpha = 0;
-      bitmap.x = x;
-      bitmap.y = y;
-      bitmap.scaleX = 0.5;
-      bitmap.scaleY = 0.5;
-
-      this.canvasWrapper.addChild(bitmap);
-      var tween = createjs.Tween.get(bitmap, { loop: false }).to({ alpha: 1 }, 1500, createjs.Ease.getPowInOut(2)).to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2)).call(this.handleComplete.bind(this));
-
-      createjs.Ticker.addEventListener("tick", this.canvasWrapper.getCanvas());
-
-      bitmap.addEventListener("click", function (event) {
-        _this2.canvasWrapper.removeChild(bitmap);
-        _this2.canvasWrapper.update();
-      });
+      this.createImage();
     }
   }]);
 
