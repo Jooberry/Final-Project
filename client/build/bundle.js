@@ -22557,9 +22557,10 @@ var Game = function () {
       var _this = this;
 
       createjs.Sound.registerPlugins([createjs.HTMLAudioPlugin]);
-      console.log(createjs.Sound.activePlugin.toString());
+      // console.log(createjs.Sound.activePlugin.toString());
       createjs.Sound.alternateExtensions = ["sfs"];
-      // const mySound = createjs.Sound.play('/assets/sound.wav');
+
+      var sounds = ['/sounds/boom.wav', '/sounds/coin.wav', '/sounds/explode.wav', '/sounds/hit.wav', '/sounds/jump.wav', '/sounds/laser.wav', '/sounds/nuke.wav', '/sounds/powerup.wav', '/sounds/sound.wav', '/sounds/splash.wav', '/sounds/wahwah.wav'];
 
       createjs.Ticker.setFPS(120);
 
@@ -22587,7 +22588,7 @@ var Game = function () {
         _this.canvasWrapper.removeChild(bitmap);
         _this.canvasWrapper.update();
 
-        createjs.Sound.play('/sounds/coin.wav');
+        createjs.Sound.play(sounds[Math.floor(Math.random() * sounds.length)]);
       });
     }
   }, {

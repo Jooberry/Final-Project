@@ -7,9 +7,10 @@ class Game {
   createImage() {
 
     createjs.Sound.registerPlugins([ createjs.HTMLAudioPlugin]);
-    console.log(createjs.Sound.activePlugin.toString());
+    // console.log(createjs.Sound.activePlugin.toString());
     createjs.Sound.alternateExtensions = ["sfs"];
-    // const mySound = createjs.Sound.play('/assets/sound.wav');
+
+    const sounds = ['/sounds/boom.wav', '/sounds/coin.wav', '/sounds/explode.wav', '/sounds/hit.wav', '/sounds/jump.wav', '/sounds/laser.wav', '/sounds/nuke.wav', '/sounds/powerup.wav', '/sounds/sound.wav', '/sounds/splash.wav', '/sounds/wahwah.wav']
 
     createjs.Ticker.setFPS(120);
 
@@ -40,7 +41,7 @@ class Game {
       this.canvasWrapper.removeChild(bitmap);
       this.canvasWrapper.update();
 
-      createjs.Sound.play('/sounds/coin.wav');
+      createjs.Sound.play(sounds[Math.floor(Math.random()*sounds.length)]);
     });
 
   }
