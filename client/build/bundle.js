@@ -22556,7 +22556,11 @@ var Game = function () {
     value: function createImage() {
       var _this = this;
 
-      createjs.Ticker.setFPS(24);
+      if (!createjs.Sound.initializeDefaultPlugins()) {
+        return;
+      }
+
+      createjs.Ticker.setFPS(120);
 
       var x = Math.round(Math.random() * 1150) - 25;
       var y = Math.round(Math.random() * 420) - 25;

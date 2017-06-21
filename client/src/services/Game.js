@@ -6,7 +6,9 @@ class Game {
 
   createImage() {
 
-    createjs.Ticker.setFPS(24);
+    if (!createjs.Sound.initializeDefaultPlugins()) { return; }
+
+    createjs.Ticker.setFPS(120);
 
     let x = Math.round(Math.random() * 1150) - 25;
     let y = Math.round(Math.random() * 420) - 25;
