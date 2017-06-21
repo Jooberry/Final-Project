@@ -22556,9 +22556,10 @@ var Game = function () {
     value: function createImage() {
       var _this = this;
 
-      if (!createjs.Sound.initializeDefaultPlugins()) {
-        return;
-      }
+      createjs.Sound.registerPlugins([createjs.HTMLAudioPlugin]);
+      console.log(createjs.Sound.activePlugin.toString());
+      createjs.Sound.alternateExtensions = ["sfs"];
+      var mySound = createjs.Sound.play('/assets/sound.wav');
 
       createjs.Ticker.setFPS(120);
 
@@ -22585,6 +22586,8 @@ var Game = function () {
       bitmap.addEventListener("click", function (event) {
         _this.canvasWrapper.removeChild(bitmap);
         _this.canvasWrapper.update();
+
+        createjs.Sound.play(event.src);
       });
     }
   }, {

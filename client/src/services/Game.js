@@ -6,7 +6,10 @@ class Game {
 
   createImage() {
 
-    if (!createjs.Sound.initializeDefaultPlugins()) { return; }
+    createjs.Sound.registerPlugins([ createjs.HTMLAudioPlugin]);
+    console.log(createjs.Sound.activePlugin.toString());
+    createjs.Sound.alternateExtensions = ["sfs"];
+    var mySound = createjs.Sound.play('/assets/sound.wav');
 
     createjs.Ticker.setFPS(120);
 
@@ -36,6 +39,8 @@ class Game {
     bitmap.addEventListener("click", (event) => {
       this.canvasWrapper.removeChild(bitmap);
       this.canvasWrapper.update();
+
+      createjs.Sound.play(event.src);
     });
 
   }
