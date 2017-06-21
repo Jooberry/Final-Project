@@ -22559,7 +22559,7 @@ var Game = function () {
       createjs.Sound.registerPlugins([createjs.HTMLAudioPlugin]);
       console.log(createjs.Sound.activePlugin.toString());
       createjs.Sound.alternateExtensions = ["sfs"];
-      var mySound = createjs.Sound.play('/assets/sound.wav');
+      // const mySound = createjs.Sound.play('/assets/sound.wav');
 
       createjs.Ticker.setFPS(120);
 
@@ -22587,7 +22587,7 @@ var Game = function () {
         _this.canvasWrapper.removeChild(bitmap);
         _this.canvasWrapper.update();
 
-        createjs.Sound.play(event.src);
+        createjs.Sound.play('/sounds/coin.wav');
       });
     }
   }, {
