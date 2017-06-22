@@ -10,7 +10,7 @@ class Game {
     // console.log(createjs.Sound.activePlugin.toString());
     createjs.Sound.alternateExtensions = ["sfs"];
 
-    const sounds = ['/sounds/boom.wav', '/sounds/coin.wav', '/sounds/explode.wav', '/sounds/hit.wav', '/sounds/jump.wav', '/sounds/laser.wav', '/sounds/nuke.wav', '/sounds/powerup.wav', '/sounds/sound.wav', '/sounds/splash.wav', '/sounds/wahwah.wav']
+    const sounds = ['/sounds/Alex.m4a', '/sounds/Allegra.m4a', '/sounds/Andrew.m4a', '/sounds/Ben.m4a', '/sounds/Bill.m4a', '/sounds/Caroline.m4a', '/sounds/Craig.m4a', '/sounds/Darren.m4a', '/sounds/David.m4a', '/sounds/Dominic.m4a', '/sounds/Duncan.m4a', '/sounds/Eden.m4a', '/sounds/Euan.m4a', '/sounds/Ian.m4a', '/sounds/James.m4a', '/sounds/Michael.m4a', '/sounds/Paule.wav', '/sounds/Rajini.m4a', '/sounds/Reece.m4a', '/sounds/Rhys.m4a', '/sounds/Sandy.m4a', '/sounds/Tony.m4a', '/sounds/Tristan.m4a', '/sounds/Wojtek.m4a', '/sounds/Zsolt.m4a']
 
     createjs.Ticker.setFPS(120);
 
@@ -35,13 +35,22 @@ class Game {
       .to({ alpha: 0 }, 1500, createjs.Ease.getPowInOut(2))
      .call(this.handleComplete.bind(this));
 
+
     createjs.Ticker.addEventListener("tick", this.canvasWrapper.getCanvas());
+
 
     bitmap.addEventListener("click", (event) => {
       this.canvasWrapper.removeChild(bitmap);
       this.canvasWrapper.update();
 
-      createjs.Sound.play(sounds[Math.floor(Math.random()*sounds.length)]);
+     const soundFileLoc = "/sounds/" + image.src.split('/')[4].split('.png')[0] + '.m4a'
+    
+      if(sounds.indexOf(soundFileLoc) > -1) {
+        const myInstance =  createjs.Sound.play(soundFileLoc);
+      } else {
+        const myInstance =  createjs.Sound.play("/sounds/coin.wav");        
+      }
+      
     });
 
   }
